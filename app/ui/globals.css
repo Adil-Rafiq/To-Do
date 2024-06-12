@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Robolt x Hand Light';
+  src: url('https://db.onlinewebfonts.com/t/508eeb3849362bb16844cc1d5ac1f88a.eot');
+  src: url('https://db.onlinewebfonts.com/t/508eeb3849362bb16844cc1d5ac1f88a.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://db.onlinewebfonts.com/t/508eeb3849362bb16844cc1d5ac1f88a.woff2')
+      format('woff2'),
+    url('https://db.onlinewebfonts.com/t/508eeb3849362bb16844cc1d5ac1f88a.woff')
+      format('woff'),
+    url('https://db.onlinewebfonts.com/t/508eeb3849362bb16844cc1d5ac1f88a.ttf')
+      format('truetype'),
+    url('https://db.onlinewebfonts.com/t/508eeb3849362bb16844cc1d5ac1f88a.svg#Robolt x Hand Light')
+      format('svg');
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: black;
+  @apply bg-accent/50;
+}
+
+p {
+  /* font-family: 'Robolt x Hand Light' !important; */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* styles/globals.css */
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  position: relative;
+  cursor: pointer;
+}
+
+input[type='checkbox']:checked {
+  background-color: #000;
+  border: transparent;
+}
+
+input[type='checkbox']:checked::after {
+  content: '✓';
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  line-height: 1rem;
+}

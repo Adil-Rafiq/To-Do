@@ -1,14 +1,11 @@
 // all data fetching functions
 import { unstable_noStore as noStore } from 'next/cache';
-import { connectToDB } from '@/utils/database';
-import Task from '@/models/task';
 
-export async function fetchTasks() {
+export async function fetchAllTasks() {
   noStore();
-
   try {
-    await connectToDB();
-    const tasks = await Task.find();
+    const response = await fetch('http://localhost:3000/api/task');
+    const tasks = await response.json();
     return tasks;
   } catch (error) {
     throw new Error('Failed to fetch all tasks.');
@@ -19,11 +16,10 @@ export async function fetchTaskById(id: string) {
   noStore();
 
   try {
-    await connectToDB();
-    const task = await Task.findById(id);
-    console.log(task);
+    const response = await fetch(`http://localhost:3000/api/task/${id}`);
+    const task = await response.json();
     return task;
   } catch (error) {
-    throw new Error('Failed to fetch task by id.');
+    throw new Error('Failed to fetch task.');
   }
 }

@@ -5,14 +5,14 @@ import TaskCard from '@/app/ui/tasks/task-details';
 
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
-  const task: Task = await fetchTaskById(id);
+  let task: Task = null;
 
-  return (
-    <TaskCard
-      id={task._id.toString()}
-      title={task.title}
-      description={task.description}
-      status={task.status}
-    />
-  );
+  try {
+    task = await fetchTaskById(id);
+  } catch (error) {
+    console.error('Failed to fetch task');
+    return <div>Failed to fetch task</div>;
+  }
+
+  return <TaskCard task={task} />;
 }

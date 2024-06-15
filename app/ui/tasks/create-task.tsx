@@ -29,21 +29,21 @@ export default function CreateTask() {
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 max-w-screen-sm">
       <input
-        className="border border-gray-300 p-2"
+        className="border rounded-md border-gray-300 p-2"
         placeholder="Title"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <textarea
-        className="border border-gray-300 p-2"
+        className="border rounded-md border-gray-300 p-2"
         placeholder="Description"
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
       <button
-        className="bg-blue-500 text-white p-2 rounded"
+        className="flex items-center max-w-fit border border-black px-4 py-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300"
         onClick={handleSave}
         disabled={loading}
       >

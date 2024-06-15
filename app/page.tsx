@@ -1,8 +1,8 @@
 import PendingTaskCard from '@/app/ui/tasks/pending-task-card';
 import CompletedTaskCard from '@/app/ui/tasks/completed-task-card';
-import CreateTask from '@/app/ui/tasks/create-task';
 import { fetchAllTasks } from '@/app/lib/data';
 import { Task } from './lib/definitions';
+import Link from 'next/link';
 
 export default async function Home() {
   let tasks: Task[] = [];
@@ -39,10 +39,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <section>
-        <h1 className="text-left text-2xl font-bold mb-5">Create New Task</h1>
-        <CreateTask />
-      </section>
+      <Link href="/tasks/create">
+        <button className="border border-black p-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300">
+          Create Task
+        </button>
+      </Link>
     </main>
   );
 }

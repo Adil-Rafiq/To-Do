@@ -43,13 +43,13 @@ export default function TaskCard({ task }: { task: Task }) {
 
       <div className="flex gap-5 items-center mt-4">
         <Link href={`/tasks/${task?._id}/edit`}>
-          <button className="px-2 py-1 text-sm text-white bg-blue-500 rounded">
+          <button className="flex items-center max-w-fit border border-black px-4 py-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300">
             Edit
           </button>
         </Link>
 
         <button
-          className="px-2 py-1 text-sm text-white bg-red-500 rounded"
+          className="flex items-center max-w-fit border border-black px-4 py-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300"
           onClick={handleDelete}
         >
           Delete

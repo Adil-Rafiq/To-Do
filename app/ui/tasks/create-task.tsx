@@ -29,21 +29,23 @@ export default function CreateTask() {
   };
 
   return (
-    <div className="flex flex-col gap-3 max-w-screen-sm">
+    <div className="min-h-screen flex flex-col space-y-6">
+      <h1 className="font-black text-accent text-3xl">Create Task</h1>
       <input
-        className="border rounded-md border-gray-300 p-2"
+        className="text-xl font-semibold bg-accent/15 w-full border-0 border-black/30 p-2 rounded-lg outline-none"
         placeholder="Title"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <textarea
-        className="border rounded-md border-gray-300 p-2"
+        className="text-xl font-semibold bg-accent/15 w-full border-0 border-black/30 p-2 rounded-lg outline-none"
         placeholder="Description"
         value={description}
+        rows={5}
         onChange={e => setDescription(e.target.value)}
       />
       <button
-        className="flex items-center max-w-fit border border-black px-4 py-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300"
+        className="flex items-center max-w-fit !mt-5"
         onClick={handleSave}
         disabled={loading}
       >

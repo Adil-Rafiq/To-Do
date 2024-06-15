@@ -2,9 +2,11 @@
 import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchAllTasks() {
-  noStore();
+  // noStore();
   try {
-    const response = await fetch('http://localhost:3000/api/task');
+    const response = await fetch('http://localhost:3000/api/task', {
+      cache: 'no-cache',
+    });
     const tasks = await response.json();
     return tasks;
   } catch (error) {

@@ -30,8 +30,8 @@ export default function EditTask({ task }: { task: Task }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col p-4 bg-white space-y-6">
-      <h1 className="font-black text-3xl">Edit Task</h1>
+    <div className="min-h-screen flex flex-col space-y-6">
+      <h1 className="font-black text-accent text-3xl">Edit Task</h1>
 
       <form onSubmit={handleSubmit} className="space-y-2">
         <input
@@ -40,7 +40,7 @@ export default function EditTask({ task }: { task: Task }) {
           name="title"
           value={title}
           onChange={e => setTitle(e.target.value)}
-          className="text-xl font-semibold w-full border-0 border-black/30 p-2 rounded-lg outline-none"
+          className="text-xl font-semibold bg-accent/15 w-full border-0 border-black/30 p-2 rounded-lg outline-none"
           placeholder="Title of the task..."
           required
         />
@@ -66,10 +66,7 @@ export default function EditTask({ task }: { task: Task }) {
           <option value="completed">Completed</option>
         </select>
 
-        <button
-          type="submit"
-          className="flex items-center max-w-fit border border-black gap-2 px-4 py-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300"
-        >
+        <button type="submit" className="flex items-center gap-3 !mt-5">
           <FaSave className="w-5 h-5" />
           Save
         </button>

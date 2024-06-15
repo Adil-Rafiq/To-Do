@@ -22,38 +22,32 @@ export default function TaskCard({ task }: { task: Task }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col p-4 bg-white space-y-6">
-      <h1 className="font-black text-3xl">Task Details</h1>
+    <div className="min-h-screen flex flex-col space-y-6">
+      <h1 className="font-black text-accent text-3xl">Task Details</h1>
 
       <div className="space-y-2">
-        <p className="text-3xl font-semibold">{task?.title}</p>
-        <p className="bg-accent/15 p-4 rounded-lg">
+        <p className="text-xl font-semibold">{task?.title}</p>
+        <p className="bg-accent/15 p-4 rounded-lg min-h-32 max-w-md">
           {task?.description || 'No description'}
         </p>
       </div>
 
-      <div className="flex items-center space-x-2">
-        <div
-          className={`w-3 h-3 rounded-full ${
-            task?.status === 'pending' ? 'bg-red-500' : 'bg-green-500'
+      <div className="flex justify-items-center items-center space-x-2">
+        <p
+          className={`text-black p-2 italic rounded-md ${
+            task?.status === 'pending' ? 'bg-error' : 'bg-highlight'
           }`}
-        ></div>
-        <p>{task?.status}</p>
+        >
+          {task?.status}
+        </p>
       </div>
 
       <div className="flex gap-5 items-center mt-4">
         <Link href={`/tasks/${task?._id}/edit`}>
-          <button className="flex items-center max-w-fit border border-black px-4 py-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300">
-            Edit
-          </button>
+          <button>Edit</button>
         </Link>
 
-        <button
-          className="flex items-center max-w-fit border border-black px-4 py-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300"
-          onClick={handleDelete}
-        >
-          Delete
-        </button>
+        <button onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );

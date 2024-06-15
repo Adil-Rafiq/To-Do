@@ -13,36 +13,47 @@ export default async function Home() {
     return <div>Failed to fetch all tasks</div>;
   }
 
+  const pendingTasks = tasks.filter((task: Task) => task?.status === 'pending');
+  const completedTasks = tasks.filter(
+    (task: Task) => task?.status === 'completed'
+  );
+
   return (
-    <main className="space-y-20">
+    <main className="space-y-10 md:space-y-20">
       {/* ----------------- All pending tasks ---------------------- */}
       <section>
-        <h1 className="text-left text-2xl font-bold mb-5">Pending Tasks</h1>
-        <div className="flex flex-col gap-3 items-center justify-between">
-          {tasks.map((task: Task) => {
-            if (task?.status === 'pending') {
-              return <PendingTaskCard key={task?._id} task={task} />;
-            }
-          })}
+        <h1 className="text-left text-2xl text-primary font-bold mb-5">
+          Pending Tasks
+        </h1>
+        <div className="flex flex-col gap-3">
+          {pendingTasks.length > 0 ? (
+            pendingTasks.map((task: Task) => (
+              <PendingTaskCard key={task?._id} task={task} />
+            ))
+          ) : (
+            <p className="text-center text-gray-500">No pending tasks</p>
+          )}
         </div>
       </section>
 
       {/* ----------------- All completed tasks ---------------------- */}
       <section>
-        <h1 className="text-left text-2xl font-bold mb-5">Completed Tasks</h1>
-        <div className="flex flex-col gap-3 items-center justify-between">
-          {tasks.map((task: Task) => {
-            if (task?.status === 'completed') {
-              return <CompletedTaskCard key={task?._id} task={task} />;
-            }
-          })}
+        <h1 className="text-left text-2xl text-primary font-bold mb-5">
+          Completed Tasks
+        </h1>
+        <div className="flex flex-col gap-3">
+          {completedTasks.length > 0 ? (
+            completedTasks.map((task: Task) => (
+              <CompletedTaskCard key={task?._id} task={task} />
+            ))
+          ) : (
+            <p className="text-center text-gray-500">No completed tasks</p>
+          )}
         </div>
       </section>
 
       <Link href="/tasks/create">
-        <button className="border border-black p-2 text-sm bg-transparent rounded-full hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300">
-          Create Task
-        </button>
+        <button className="mt-20">Create Task</button>
       </Link>
     </main>
   );

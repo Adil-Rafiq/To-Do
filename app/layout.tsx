@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/app/ui/globals.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,11 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <header className="flex justify-between bg-accent p-4">
-          <Image src="/logo.png" alt="Logo" width={40} height={40} />
+        <header className="flex justify-between bg-accent p-4 md:px-8">
+          <Link href="/">
+            <Image src="/logo.png" alt="Logo" width={40} height={40} />
+          </Link>
         </header>
 
-        <main className="min-h-screen px-4 py-8">{children}</main>
+        <main className="min-h-screen max-w-screen-md mx-auto px-4 py-8 md:px-8 md:py-12">
+          {children}
+        </main>
       </body>
     </html>
   );

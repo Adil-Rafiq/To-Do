@@ -32,8 +32,7 @@
 }
 
 body {
-  color: black;
-  @apply bg-accent/50;
+  @apply text-secondary bg-[#0E1428];
 }
 
 p {
@@ -46,7 +45,6 @@ p {
   }
 }
 
-/* styles/globals.css */
 input[type='checkbox'] {
   appearance: none;
   -webkit-appearance: none;
@@ -61,7 +59,6 @@ input[type='checkbox'] {
 }
 
 input[type='checkbox']:checked {
-  background-color: #000;
   border: transparent;
 }
 
@@ -78,4 +75,48 @@ input[type='checkbox']:checked::after {
   justify-content: center;
   font-size: 0.85rem;
   line-height: 1rem;
+}
+
+button {
+  @apply border border-primary p-2 rounded-md text-xs bg-transparent hover:bg-accent hover:text-white hover:border-transparent transition-colors duration-300;
+}
+
+button {
+  padding: 0.8em 1.8em;
+  /* color: #17c3b2; */
+  /* border: 2px solid #17c3b2; */
+  @apply border border-accent text-accent;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  transition: 0.3s;
+  z-index: 1;
+  font-family: inherit;
+}
+
+button::before {
+  content: '';
+  width: 0;
+  height: 300%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  /* background: #17c3b2; */
+  @apply bg-accent;
+  transition: 0.5s ease;
+  display: block;
+  z-index: -1;
+}
+
+button:hover::before {
+  width: 105%;
+}
+
+button:hover {
+  /* color: #111; */
+  color: white;
 }

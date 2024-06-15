@@ -19,55 +19,62 @@ export default function PendingTaskCard({ task }: { task: Task }) {
         status,
       });
 
-      router.push('/');
+      router.replace('/');
     } catch (error) {
       alert('An error occurred while updating the task');
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent the click from propagating to the card link
     const confirmed = confirm('Are you sure you want to delete this task?');
     if (!confirmed) return;
 
     try {
       await deleteTask(task?._id);
       alert('Task deleted successfully');
-      router.push('/');
+      router.replace('/');
     } catch (error) {
       alert('An error occurred while deleting the task');
     }
   };
 
   return (
-    <div className="flex gap-4 items-center">
-      <input
-        type="checkbox"
-        id="task-1"
-        className="appearance-none h-4 w-4 border border-black/30 cursor-pointer"
-        onChange={e => {
-          handleTaskCompletion(e.target.checked);
-        }}
-      />
+    <div className="relative flex gap-4 p-4 bg-secondary/5 rounded-lg shadow-md cursor-pointer hover:bg-secondary/10 transition-colors duration-300">
+      <div className="flex items-center gap-4 w-full">
+        <input
+          type="checkbox"
+          id={`task-${task?._id}`}
+          className="appearance-none h-4 w-4 bg-primary cursor-pointer"
+          onChange={e => {
+            handleTaskCompletion(e.target.checked);
+          }}
+        />
 
-      <Link href={`/tasks/${task?._id}`}>
-        <label htmlFor="task-1" className="block cursor-pointer">
-          <p className="text-lg font-bold">{task?.title}</p>
-        </label>
-      </Link>
+        <Link href={`/tasks/${task?._id}`} className="flex-1">
+          <label htmlFor={`task-${task?._id}`} className="block cursor-pointer">
+            <p className="text-lg font-bold text-white">{task?.title}</p>
+            <p className="text-sm text-gray-400">{task?.description}</p>
+          </label>
+        </Link>
 
-      <div className="flex gap-4">
-        <button
-          className="flex items-center max-w-fit text-sm bg-transparent rounded-full hover:text-white hover:border-transparent transition-colors duration-300"
-          onClick={() => router.push(`/tasks/${task?._id}/edit`)}
-        >
-          <FaEdit className="w-4 h-4" />
-        </button>
-        <button
-          className="flex items-center max-w-fit text-sm bg-transparent rounded-full hover:text-white hover:border-transparent transition-colors duration-300"
-          onClick={handleDelete}
-        >
-          <FaTrash className="w-4 h-4" />
-        </button>
+        <div className="flex gap-6 ml-auto">
+          <button
+            className="p-0 text-white border-0 hover:text-accent hover:!bg-transparent before:bg-transparent"
+            onClick={e => {
+              e.stopPropagation(); // Prevent the click from propagating to the card link
+              router.push(`/tasks/${task?._id}/edit`);
+            }}
+          >
+            <FaEdit className="w-4 h-4 md:w-5 md:h-5" />
+          </button>
+          <button
+            className="p-0 text-white border-0 hover:text-accent hover:!bg-transparent before:bg-transparent"
+            onClick={handleDelete}
+          >
+            <FaTrash className="w-4 h-4 md:w-5 md:h-5" />
+          </button>
+        </div>
       </div>
     </div>
   );

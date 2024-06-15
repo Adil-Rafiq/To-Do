@@ -14,9 +14,5 @@ export default async function Page({ params }: { params: { id: string } }) {
     return <div>Error fetching task</div>;
   }
 
-  return (
-    <div className="min-h-screen flex flex-col p-4 bg-white space-y-6">
-      <EditTask task={task} />
-    </div>
-  );
+  return <EditTask task={task} />;
 }

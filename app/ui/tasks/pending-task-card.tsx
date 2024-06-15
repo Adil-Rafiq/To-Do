@@ -40,7 +40,7 @@ export default function PendingTaskCard({ task }: { task: Task }) {
   };
 
   return (
-    <div className="relative flex gap-4 p-4 bg-secondary/5 rounded-lg shadow-md cursor-pointer hover:bg-secondary/10 transition-colors duration-300">
+    <div className="relative flex gap-4 p-4 bg-accent/15 rounded-lg shadow-md cursor-pointer hover:bg-secondary/10 transition-colors duration-300">
       <div className="flex items-center gap-4 w-full">
         <input
           type="checkbox"
